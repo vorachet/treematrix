@@ -2,8 +2,7 @@
 
 ## Implementation
 
- 1. 70K lib size
- 1. Wrapped jQuery treetable Plugin with a single library method __treematrix.build(matrixModel)__
+ 1. Wrapped Ludo's jQuery treetable (https://github.com/ludo/jquery-treetable) with a single library method __treematrix.build(matrixModel)__
  2. Easy to compose a tree matrix with pre-defined JSON model
  3. Built with webpack, so just add the following scripts in your HTML document
 
