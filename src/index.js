@@ -78,7 +78,7 @@ var treematrix = {
     build: function(tableElementID, caption, colModel, treeModel, clickEventFunc) {
         var targetEL = $("#" + tableElementID);
         const uid = makeUID(10);
-        targetEL.append('<table id="' +  uid + '"></table><pre id="' +  uid + '_colModelDebug"></pre><pre id="' +  uid + '_treeModelDebug"></pre>');
+        targetEL.append('<table id="' +  uid + '"></table>');
 
         var targetTableEL = $("#" + uid);
         targetTableEL.append('<caption>' + caption + '</caption>');
@@ -107,8 +107,6 @@ var treematrix = {
                 clickEventFunc(JSON.parse(this.getAttribute("data-json")));
             }
         });
-        $("#" + uid + "_colModelDebug").html(JSON.stringify(colModel, null, 2));
-        $("#" + uid + "_treeModelDebug").html(JSON.stringify(treeModel, null, 2));
     }
 }
 
