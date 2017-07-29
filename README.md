@@ -5,7 +5,7 @@
 
 ### Output
 
-![Logo](https://github.com/vorachet/treematrix/raw/master/screenshot.png)
+![Logo](https://github.com/vorachet/treematrix/raw/master/demo.gif)
 
 ### Demo
 
