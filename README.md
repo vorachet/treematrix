@@ -3,12 +3,13 @@
 ## Implementation
 
  1. Wrapped Ludo's jQuery treetable (https://github.com/ludo/jquery-treetable) with a single library method __treematrix.build(matrixModel)__
- 2. Easy to compose a tree matrix with pre-defined JSON model
+ 2. Easy to compose a tree matrix with an extensible JSON model structure designed by this project
  3. Built with webpack, so just add the following scripts in your HTML document
+ 4. Tree node selection callback is provided 
 
 ```
  <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
- <script src="https://unpkg.com/treematrix@latest/dist/treematrix"></script>
+ <script src="https://unpkg.com/treematrix@latest/dist/treematrix.js"></script>
 ```
 
 ## Demo
@@ -19,10 +20,9 @@ or
 
 demo/index.html
 
-## Dependencies
+## Dependency
 
  1. jQuery ^3.2.1
- 2. jQuery treetable Plugin ^3.2.0
 
 ## Example
 
@@ -50,7 +50,7 @@ demo/index.html
     <div id="demo2"></div>
     
     <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/treematrix@latest/dist/treematrix"></script>
+    <script src="https://unpkg.com/treematrix@latest/dist/treematrix.js"></script>
     <script src="models.js"></script>
     <script src="builders.js"></script>
   </body>
