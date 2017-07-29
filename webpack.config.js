@@ -4,7 +4,7 @@ const JavaScriptObfuscator = require('webpack-obfuscator');
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: './build/treematrix.js'
+        filename: './dist/treematrix.js'
     },
     plugins: [
         //new JavaScriptObfuscator ({

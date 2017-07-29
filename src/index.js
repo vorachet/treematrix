@@ -1,25 +1,7 @@
-import './style.css'
-import $ from 'jquery'
-import '../vendor/jquery.treetable.js'
 
-function binarySearch(array, key) {
-    var lo = 0,
-        hi = array.length - 1,
-        mid,
-        element;
-    while (lo <= hi) {
-        mid = ((lo + hi) >> 1);
-        element = array[mid];
-        if (element < key) {
-            lo = mid + 1;
-        } else if (element > key) {
-            hi = mid - 1;
-        } else {
-            return mid;
-        }
-    }
-    return -1;
-}
+import * as $ from 'jquery';
+import '../vendor/jquery.treetable.js'
+import '../vendor/jquery.treetable.css'
 
 function makeUID(userDefinedLength) {
   var length = userDefinedLength || 5;
@@ -36,9 +18,15 @@ function isFunction(functionToCheck) {
 }
 
 function render(treeModelInstance, colModel) {
+    var instance = JSON.parse(JSON.stringify(treeModelInstance));
+    delete instance.children;
+    delete instance.isChild;
+    delete instance.parentId;
+    delete instance.childId;
+
     var html = treeModelInstance.isChild ?
-                '<tr data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(treeModelInstance) + '\' data-tt-parent-id="' + treeModelInstance.parentId + '">' :
-                '<tr data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(treeModelInstance) + '\' >';
+                '<tr data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(instance) + '\' data-tt-parent-id="' + treeModelInstance.parentId + '">' :
+                '<tr data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(instance) + '\' >';
 
     delete treeModelInstance.isChild;
     delete treeModelInstance.parentId;
