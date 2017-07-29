@@ -1,4 +1,4 @@
-import * as $ from 'jquery';
+//import $ from 'jquery';
 import '../vendor/jquery.treetable.js'
 import '../vendor/jquery.treetable.css'
 

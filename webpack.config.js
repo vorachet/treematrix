@@ -5,14 +5,22 @@ module.exports = {
     output: {
         filename: './dist/treematrix.js'
     },
+    externals: {
+        // require("jquery") is external and available
+        //  on the global var jQuery
+        "jquery": "jQuery"
+    },
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery",
             "window.$": "jquery"
-        })
-
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+      include: /\.min\.js$/,
+      minimize: true
+    })
     ],
     module: {
         rules: [

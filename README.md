@@ -2,11 +2,13 @@
 
 ## Implementation
 
+ 1. 70K lib size
  1. Wrapped jQuery treetable Plugin with a single library method __treematrix.build(matrixModel)__
  2. Easy to compose a tree matrix with pre-defined JSON model
  3. Built with webpack and jQuery included, just add the following script in your HTML document
 
 ```
+ <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
  <script src="https://unpkg.com/treematrix@latest/dist/treematrix"></script>
 ```
 
@@ -42,6 +44,7 @@ http://htmlpreview.github.io/?https://github.com/vorachet/treematrix/blob/master
     <h2 class="subtitle">Demo</h2>
     <div id="demo1"></div>
     <div id="demo2"></div>
+    <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/treematrix@latest/dist/treematrix"></script>
     <script src="loaders.js"></script>
   </body>
