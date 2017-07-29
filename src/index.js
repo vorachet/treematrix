@@ -62,14 +62,13 @@ function render(treeModelInstance, colModel) {
 
 var treematrix = {
 
-    build: function(loader, options) {
+    build: function(selector, loader, callback) {
 
         const
-            selector = loader.selector,
             caption = loader.caption,
             colModel = loader.cols,
             treeModel = loader.tree,
-            clickEventFunc = loader.callback,
+            clickEventFunc = callback,
             targetDIV = $("#" + selector),
             uid = makeUID(10);
 
