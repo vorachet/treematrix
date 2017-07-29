@@ -1,5 +1,14 @@
 # Tree Matrix - The simplest way to make HTML Tree Matrix
 
+## Implementation
+
+ 1. Wrapped jQuery treetable Plugin with high-level lib design treematrix.build(matrixModel)
+ 2. Easy to compose a tree matrix with pre-defined JSON model
+
+## Dependencies
+
+ 1. jQuery ^3.2.1
+ 2. jQuery treetable Plugin ^3.2.0
 
 ## Example
 
