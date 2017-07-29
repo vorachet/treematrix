@@ -1,4 +1,3 @@
-
 import * as $ from 'jquery';
 import '../vendor/jquery.treetable.js'
 import '../vendor/jquery.treetable.css'
@@ -25,26 +24,26 @@ function render(treeModelInstance, colModel) {
     delete instance.childId;
 
     var html = treeModelInstance.isChild ?
-                '<tr data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(instance) + '\' data-tt-parent-id="' + treeModelInstance.parentId + '">' :
-                '<tr data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(instance) + '\' >';
+                '<tr id="' + treeModelInstance.id + '" data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(instance) + '\' data-tt-parent-id="' + treeModelInstance.parentId + '">' :
+                '<tr id="' + treeModelInstance.id + '" data-tt-id="' + treeModelInstance.id + '" data-json=\'' + JSON.stringify(instance) + '\' >';
 
     delete treeModelInstance.isChild;
     delete treeModelInstance.parentId;
     delete treeModelInstance.childId;
 
     html += '<td>' + treeModelInstance.label + '</td>';
-    for (var j = 0; j < colModel.length; j++) {
 
+    Object.keys(colModel).map((colKey) => {
         if (treeModelInstance.colsMap) {
-            if (treeModelInstance.colsMap[colModel[j].id]) {
-                html += '<td>' + treeModelInstance.colsMap[colModel[j].id] + '</td>';
+            if (treeModelInstance.colsMap[colKey]) {
+                html += '<td>' + treeModelInstance.colsMap[colKey] + '</td>';
             } else {
                 html += '<td></td>';
             }
         } else {
                 html += '<td></td>';
         }
-    }
+    });
     html += '</tr>';
 
     if (treeModelInstance.children && Array.isArray(treeModelInstance.children) && treeModelInstance.children.length > 0) {
@@ -63,36 +62,46 @@ function render(treeModelInstance, colModel) {
 
 var treematrix = {
 
-    build: function(tableElementID, caption, colModel, treeModel, clickEventFunc) {
-        var targetEL = $("#" + tableElementID);
-        const uid = makeUID(10);
-        targetEL.append('<table id="' +  uid + '"></table>');
+    build: function(loader, options) {
 
-        var targetTableEL = $("#" + uid);
-        targetTableEL.append('<caption>' + caption + '</caption>');
-        var header = '<thead><tr><th>' + caption + '</th>';
+        const
+            selector = loader.selector,
+            caption = loader.caption,
+            colModel = loader.cols,
+            treeModel = loader.tree,
+            clickEventFunc = loader.callback,
+            targetDIV = $("#" + selector),
+            uid = makeUID(10);
 
-        for (var i = 0; i < colModel.length; i++) {
-            header += '<th>' + colModel[i].label + '</th>';
-        }
+        targetDIV.append('<table id="' +  uid + '"></table>');
+
+        const targetTable = $("#" + uid);
+        targetTable.append('<caption>' + caption + '</caption>');
+
+        let header = '<thead><tr><th></th>';
+
+        Object.keys(colModel).map((colKey) => {
+            header += '<th>' + colModel[colKey].label + '</th>';
+        });
+
         header += '</tr></thead>';
-        targetTableEL.append(header);
+        targetTable.append(header);
 
-        var tableHTML = '<tbody>';
-        for (var i = 0; i < treeModel.length; i++) {
-            const treeModelInstance = treeModel[i]
-            tableHTML += render(treeModelInstance, colModel);
+        let tableHTML = '<tbody>';
+        for (let i = 0; i < treeModel.length; i++) {
+            tableHTML += render(treeModel[i], colModel);
         }
         tableHTML += '</tbody>';
-        targetTableEL.append(tableHTML);
+        targetTable.append(tableHTML);
 
         $("#" + uid).treetable({ expandable: true, initialState: "expanded" });
         $("#" + uid + " tbody").on("mousedown", "tr", function() {
             $(".selected").not(this).removeClass("selected");
             $(this).toggleClass("selected");
-
             if (isFunction(clickEventFunc)) {
-                clickEventFunc(JSON.parse(this.getAttribute("data-json")));
+                let selectedTree = JSON.parse(this.getAttribute("data-json"));
+                selectedTree.colModel = colModel;
+                clickEventFunc(selectedTree);
             }
         });
     }

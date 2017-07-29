@@ -1,6 +1,6 @@
 {
   "name": "treematrix",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/vorachet/treematrix.git"
   },
-  "author": "",
+  "author": "vorachet jaroensawas",
+  "email": "vorachet@gamil.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vorachet/treematrix/issues"
